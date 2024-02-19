@@ -3,11 +3,13 @@ import React from "react";
 import { useState } from "react";
 import { ChangeEvent, FormEvent } from "react";
 interface FormData {
+  id: string;
   username: string;
   image: string;
 }
-const AddForm = ({setDataUser}) => {
+const AddForm = ({ setDataUser }) => {
   const [formData, setFormData] = useState<FormData>({
+    id: "",
     username: "",
     image: "",
   });
@@ -18,10 +20,9 @@ const AddForm = ({setDataUser}) => {
       [name]: value,
     });
   };
-
   const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
     const selectedImage = event.target.files?.[0] || null;
-    if(selectedImage){
+    if (selectedImage) {
       const ImageUser = URL.createObjectURL(selectedImage);
       setFormData({
         ...formData,
@@ -29,18 +30,26 @@ const AddForm = ({setDataUser}) => {
       });
     }
   };
-
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setDataUser((prevData)=>([...prevData,formData]));
+    setDataUser((prevData) => [...prevData, formData]);
     setFormData({
+      id: "",
       username: "",
-      image:  "",
+      image: "",
     });
   };
   return (
     <>
       <form onSubmit={handleSubmit}>
+        <input
+          className="py-3 px-4 block w-[500px] border-gray-200 rounded-lg text-sm outline-none my-5 bg-gray-700 text-white"
+          id="name"
+          type="text"
+          placeholder="ID"
+          name="id"
+          onChange={handleInputChange}
+        ></input>
         {/* input text */}
         <input
           className="py-3 px-4 block w-[500px] border-gray-200 rounded-lg text-sm outline-none my-5 bg-gray-700 text-white"

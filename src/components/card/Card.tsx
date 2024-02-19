@@ -8,7 +8,7 @@ const Card = ({ user ,setdata}) => {
       "Are you sure you want to delete this task?"
     );
     if (isConfirmed) {
-      setdata(user.filter((user) => user.id !== id));
+      setdata(user.filter((item) => item.id !== id));
     }
   };
   return (
