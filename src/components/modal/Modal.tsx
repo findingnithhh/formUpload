@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import { DynamicButton } from "../button";
-import { Add } from "../form";
-const Modal = () => {
+import { AddForm } from "../form";
+const Modal = ({setUser}) => {
   const [isOpen, setIsOpen] = useState(false);
   const openModal = () => {
     setIsOpen(true);
@@ -36,11 +36,8 @@ const Modal = () => {
               className=" flex justify-center rounded-2xl bg-gray-600 my-5"
               style={{ width: "700px", padding: "50px" }}
             >
-              <Add />
+              <AddForm setDataUser={setUser}/>
               <div className="modal-action">
-                {/* <button className="btn" onClick={closeModal}>
-                Close
-              </button> */}
                 <button
                   className="absolute top-2 right-2 text-gray-600"
                   onClick={closeModal}
